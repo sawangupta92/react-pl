@@ -3,11 +3,14 @@ import { connect } from 'react-redux'
 
 class AppMenuItem extends Component {
 
+  constructor() {
+    super()
+    debugger
+  }
+
   render() {
     return (
-      <div className="AppMenuItem col-md-3">
-        { this.props.display_text }
-      </div>
+      <Link to='/'>{ this.props.display_text }</Link>
     );
   }
 }

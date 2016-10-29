@@ -2,23 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import './bootstrap.css';
 import { connect } from 'react-redux'
-import fetch from 'isomorphic-fetch'
 import { onAppLoad } from './actions/App'
 import AppMenu from './AppMenu'
 
 class App extends Component {
-
-  constructor() {
-    super()
-    var _this = this
-    var req = new Request('http://localhost:3000/api/v1/wineries/1/app_configurations.json', {
-      method: 'GET',
-    })
-    fetch(req).then(response => response.json())
-    .then(function(json) {
-      _this.props.renderOnAppLoad(json.payload)
-    })
-  }
 
   render() {
     return (
