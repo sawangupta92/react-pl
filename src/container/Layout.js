@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
 import { onAppLoad } from './../actions/App'
+import { signUpSubmitActions } from './../actions/Session'
 import App from './App'
 
 class Layout extends Component {
@@ -15,6 +16,24 @@ class Layout extends Component {
     .then(function(json) {
       _this.props.renderOnAppLoad(json.payload)
     })
+    this.setCurrentUser()
+  }
+
+  setCurrentUser() {
+    if(sessionStorage.getItem("currentUserId")){
+      var _this = this
+      var req = new Request('http://localhost:3000/api/v1/wineries/1/customers/profile.json', {
+        method: 'GET',
+        headers: {
+          'X-AUTHENTICATION-TOKEN': sessionStorage.getItem("currentUserId"),
+        }
+      })
+
+      fetch(req).then(response => response.json())
+      .then(function(json) {
+        _this.props.setUser(json)
+      })
+    }
   }
 
   render() {
@@ -37,6 +56,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   renderOnAppLoad: (data) => {
     dispatch(onAppLoad(data))
+  },
+  setUser: (data) => {
+    dispatch(signUpSubmitActions(data))
   }
 })
 
