@@ -5,7 +5,6 @@ class AppMenuItem extends Component {
 
   constructor() {
     super()
-    debugger
   }
 
   render() {

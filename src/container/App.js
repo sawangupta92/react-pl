@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-import './bootstrap.css';
+import './../App.css';
+import './../bootstrap.css';
 import { connect } from 'react-redux'
-import { onAppLoad } from './actions/App'
 import AppMenu from './AppMenu'
 
 class App extends Component {
@@ -27,12 +26,6 @@ const mapStateToProps = (state) => ({
   theme_image: state.theme_image
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  renderOnAppLoad: (data) => {
-    dispatch(onAppLoad(data))
-  }
-})
-
-App = connect(mapStateToProps, mapDispatchToProps)(App)
+App = connect(mapStateToProps)(App)
 
 export default App;
