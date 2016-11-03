@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Layout from './container/Layout';
 import Wine from './container/Wine';
 import Session from './container/Session';
+import Checkout from './container/Checkout';
 import logIn from './container/logIn';
 import signUp from './container/signUp';
 import './index.css';
@@ -24,6 +25,7 @@ ReactDOM.render(
           <Route path='/session' components={Session}/>
           <Route path='/signUp' components={signUp} onEnter={alreadyLoggedIn}/>
           <Route path='/logIn' components={logIn}  onEnter={alreadyLoggedIn}/>
+          <Route path='/checkout' components={Checkout} onEnter={requireAuth} />
         </Route>
       </Router>
     </div>

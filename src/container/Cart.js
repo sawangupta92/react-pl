@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import cookie from 'react-cookie';
 import { setOrder } from './../actions/order'
+import { Link } from 'react-router'
 
 class Cart extends Component {
   constructor() {
@@ -12,7 +13,9 @@ class Cart extends Component {
   render() {
     return (
       <div className="Cart">
-        Total: { this.props.order && this.props.order.total }
+        <Link to='/checkout'>
+          Total: { this.props.order && this.props.order.total }
+        </Link>
       </div>
     );
   }
