@@ -6,13 +6,12 @@ class logIn extends Component {
 
   logInSubmitEvent(e) {
     e.preventDefault();
-    this.props.logInSubmit(this.refs.email.value, this.refs.password.value)
+    this.props.logInSubmit(this.refs.email.value, this.refs.password.value, this.props.router)
   }
 
   render() {
     return (
       <div>
-        hello
         <form className='col-md-6' onSubmit={ (e)=> {this.logInSubmitEvent(e)}}>
           Email:
           <input type='text' name='email' className='form-control' ref='email' />
@@ -49,12 +48,13 @@ function customerLogIn(email, password) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  logInSubmit: (email, password) => {
+  logInSubmit: (email, password, router) => {
     return customerLogIn(email, password).then(res => {
       if(res === false){
         console.log('errors in Login')
       } else {
         dispatch(signUpSubmitActions(res))
+        router.push('/')
       }
     })
   }

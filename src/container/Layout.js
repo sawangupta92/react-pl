@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { onAppLoad } from './../actions/App'
 import { signUpSubmitActions } from './../actions/Session'
+import cookie from 'react-cookie';
 import App from './App'
 
 class Layout extends Component {
@@ -20,12 +21,12 @@ class Layout extends Component {
   }
 
   setCurrentUser() {
-    if(sessionStorage.getItem("currentUserId")){
+    if(cookie.load("currentUserId")){
       var _this = this
       var req = new Request('http://localhost:3000/api/v1/wineries/1/customers/profile.json', {
         method: 'GET',
         headers: {
-          'X-AUTHENTICATION-TOKEN': sessionStorage.getItem("currentUserId"),
+          'X-AUTHENTICATION-TOKEN': cookie.load("currentUserId"),
         }
       })
 

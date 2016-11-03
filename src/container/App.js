@@ -14,7 +14,6 @@ class App extends Component {
           <AppMenu />
         </div>
         <p className="App-intro">
-          { this.props.theme && this.props.theme }
         </p>
       </div>
     );

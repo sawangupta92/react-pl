@@ -11,6 +11,7 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk';
 import reducer from './reducers'
 import { browserHistory, Router, Route } from 'react-router'
+import { requireAuth, alreadyLoggedIn } from './auth';
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
@@ -19,10 +20,10 @@ ReactDOM.render(
     <div>
       <Router history={browserHistory}>
         <Route path='/' component={Layout}>
-          <Route path='/wines' components={Wine}/>
+          <Route path='/wines' components={Wine} onEnter={ requireAuth } />
           <Route path='/session' components={Session}/>
-          <Route path='/signUp' components={signUp}/>
-          <Route path='/logIn' components={logIn}/>
+          <Route path='/signUp' components={signUp} onEnter={alreadyLoggedIn}/>
+          <Route path='/logIn' components={logIn}  onEnter={alreadyLoggedIn}/>
         </Route>
       </Router>
     </div>

@@ -15,7 +15,7 @@ class AppMenu extends Component {
         <div>
           <Session />
         </div>
-        { this.props.app_menu_items && this.props.app_menu_items.map((row) => {
+        { this.props.currentUser && this.props.app_menu_items && this.props.app_menu_items.map((row) => {
           return <div key={row.key} onClick={() => { this.props.onAppMenuClick(row.key)} } >
             <div className='col-md-3'>
               <Link to={row.key}>{ row.display_text }</Link>
@@ -28,7 +28,8 @@ class AppMenu extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  app_menu_items: state.app_menu_items
+  app_menu_items: state.app_menu_items,
+  currentUser: state.currentUser,
 })
 
 const mapDispatchToProps = (dispatch) => ({

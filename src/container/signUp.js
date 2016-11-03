@@ -6,13 +6,12 @@ class signUp extends Component {
 
   signUpSubmitEvent(e) {
     e.preventDefault();
-    this.props.signUpSubmit(this.refs.email.value, this.refs.first_name.value, this.refs.last_name.value, this.refs.password.value, this.refs.password_confirmation.value)
+    this.props.signUpSubmit(this.refs.email.value, this.refs.first_name.value, this.refs.last_name.value, this.refs.password.value, this.refs.password_confirmation.value, this.props.router)
   }
 
   render() {
     return (
       <div>
-        hello
         <form className='col-md-6' onSubmit={ (e)=> {this.signUpSubmitEvent(e)}}>
           Email:
           <input type='text' name='email' className='form-control' ref='email' />
@@ -59,12 +58,13 @@ function customersignUp(email, first_name, last_name, password, password_confirm
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  signUpSubmit: (email, first_name, last_name, password, password_confirmation) => {
+  signUpSubmit: (email, first_name, last_name, password, password_confirmation, router) => {
     return customersignUp(email, first_name, last_name, password, password_confirmation).then(res => {
       if(res === false){
         console.log('errors in signUp')
       } else {
         dispatch(signUpSubmitActions(res))
+        router.push('/')
       }
     })
   }
