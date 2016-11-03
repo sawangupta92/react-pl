@@ -41,7 +41,7 @@ class Layout extends Component {
     return (
       <div>
         <App />
-        <div className="Sidebar">
+        <div className="container">
           {this.props.children}
         </div>
       </div>

@@ -12,6 +12,9 @@ const reducer = (state = [], action) => {
     case 'LOG_OUT':
       cookie.remove('currentUserId')
       return Object.assign({}, state, { currentUser: null })
+    case 'SET_ORDER':
+      cookie.save("currentOrderId", action.res.id);
+      return Object.assign({}, state, { order: action.res })
     default:
       return state
   }

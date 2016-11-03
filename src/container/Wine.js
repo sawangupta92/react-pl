@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import AddToCart from './addToCart'
+import { mapStateToProps, mapDispatchToProps } from './../connector/createOrder'
 
 class Wine extends Component {
 
@@ -29,6 +31,9 @@ class Wine extends Component {
             <div className='col-lg-4 row'>
               Wine Description: { row.wine_description }
             </div>
+            <div className='col-lg-12'>
+              <AddToCart key={row.id} wine={row} onAddToCartClicked={(quantity) => this.props.AddToCartClicked(row.id, quantity, this.props.currentUser.authentication_token, this.props.order)} />
+            </div>
           </div>
         }) }
       </div>
@@ -36,10 +41,6 @@ class Wine extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  wines: state.wines
-})
-
-Wine = connect(mapStateToProps)(Wine)
+Wine = connect(mapStateToProps, mapDispatchToProps)(Wine)
 
 export default Wine;
