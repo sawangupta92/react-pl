@@ -6,6 +6,12 @@ class Checkout extends Component {
   render() {
     return (
       <div>
+        <h3>
+          Select Billing Address
+        </h3>
+        {this.props.currentUser && this.props.currentUser.billing_addresses.map((billing_address) => {
+          return <AddressListing key={billing_address.id} billing_address={billing_address} />
+        }) }
       </div>
     );
   }
