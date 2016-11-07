@@ -24,7 +24,7 @@ ReactDOM.render(
           <Route path='/wines' components={Wine} onEnter={ requireAuth } />
           <Route path='/session' components={Session}/>
           <Route path='/signUp' components={signUp} onEnter={alreadyLoggedIn}/>
-          <Route path='/logIn' components={logIn}  onEnter={alreadyLoggedIn}/>
+          <Route path='/logIn' components={logIn} onEnter={alreadyLoggedIn}/>
           <Route path='/checkout' components={Checkout} onEnter={requireAuth} />
         </Route>
       </Router>

@@ -15,6 +15,11 @@ class Cart extends Component {
       <div className="Cart">
         <Link to='/checkout'>
           Total: { this.props.order && this.props.order.total }
+          { this.props.order && this.props.order.regular_wine_line_items.map((line_item) => {
+            return <div key={line_item.variant_id}>
+              { line_item.wine_name } - { line_item.quantity }
+            </div>
+          })}
         </Link>
       </div>
     );

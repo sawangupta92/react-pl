@@ -15,6 +15,11 @@ const reducer = (state = [], action) => {
     case 'SET_ORDER':
       cookie.save("currentOrderId", action.res.id);
       return Object.assign({}, state, { order: action.res })
+    case 'SHOW_CREDIT_CARD_DETAILS':
+      return Object.assign({}, state, { showCreditCardDetails: true })
+    case 'SET_AVAILABLE_SHIPPING_ZONE':
+      state.order.billing_address = { id: action.billing_address }
+      return Object.assign({}, state, { available_shipping_zones: action.res })
     default:
       return state
   }
